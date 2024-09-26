@@ -1,0 +1,150 @@
+        @model TrollMarketWeb.ViewModels.Product.ProductShopViewModel
+        @section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Shop</p>
+			</div>
+		}
+     
+            <form action="" class="upsert-form">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="number-customer productname">Name</label>
+                        </td>
+                        <td>
+                            <input type="text" asp-for="@Model.ProductName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="name-customer categoryname">Category</label>
+                        </td>
+                        <td>
+                            <input type="text" asp-for="@Model.CategoryName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="name-customer description">Description</label>
+                        </td>
+                        <td>
+                            <input type="text" asp-for="@Model.Description">
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" class="button-search">Search</button>
+            </form>
+
+        <div class="table-author product">
+            <table class="data">
+                <thead>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(var productitem in Model.Products){
+                        <tr>
+                            <td>
+                                <a class="button add" asp-action="add" product-id="@productitem.Productid">Add to Cart</a>
+                                <a class="button detail" asp-action="detail" product-id="@productitem.Productid">Detail Info</a>
+                            </td>
+                            <td>@productitem.ProductName</td>
+                            <td>@productitem.Price</td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+					<tr>
+						<td colspan="3">
+							<div class="pagination">
+								<div>Page @Model.Paginations.PageNumber of @Model.Paginations.TotalPage</div>
+								<div>
+									@for(int pageNumber=1; pageNumber<=Model.Paginations.TotalPage; pageNumber++){
+										<a asp-action="Index"
+											asp-route-pageNumber="@pageNumber",
+                                            asp-route-productName="@Model.ProductName",
+                                            asp-route-categoryName="@Model.CategoryName",
+                                            asp-route-description="@Model.Description",
+											class="number">@pageNumber</a>
+									}
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+            </table>
+        </div>
+
+        <div class="modal-layer">
+            <div class="inputUpdate">
+                <div class="upsert-form detail-data" action="">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td class="nameproduct">
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td class="categoryname"></td>
+                            </tr>  
+                            <tr>
+                                <td>Description</td>
+                                <td class="descrriptionproduct"></td>
+                            </tr>    
+                            <tr>
+                                <td>Price</td>
+                                <td class="price"></td>
+                            </tr>
+                            <tr>
+                                <td>Seller Name</td>
+                                <td class="sellername"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="back-to dark-button" type="submit">Close</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-layer add-to-cart">
+            <div class="inputUpdate">
+                <form method="post" class="upsert-form form-add-tocart" action="">
+                <h3>Add To Cart</h3>
+                <input type="hidden" />
+                <input type="hidden" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="idproduct">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Quantity</label></td>
+                            <td>
+                                <input type="number" name="quantity">
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td><label>Shipper</label></td>
+                            <td>
+                                <select>
+                                    
+                                </select>
+                            </td>
+                        </tr> 
+                    </tbody>
+                </table>
+                <button class="insert dark-button" type="submit">Tanbah</button>
+                <button class="back-to dark-button">Batal</button>
+            </form>
+            </div>
+        </div>
+        <script src="~/JS/shop.js"></script>

@@ -1,0 +1,87 @@
+        @model TrollMarketWeb.ViewModels.History.HistoryIndexViewModel
+        @section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Shop</p>
+			</div>
+		}
+     
+            <form action="" class="upsert-form">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="number-customer productname">Seller</label>
+                        </td>
+                        <td>
+                            <select name="" id="">
+                                <option value="">Choose Seller</option>
+                                @foreach(var sellerItem in @Model.Sellers){
+                                    <option value="@sellerItem.Value">@sellerItem.Text</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="name-customer categoryname">Buyyer</label>
+                        </td>
+                        <td>
+                            <select name="" id="">
+                                <option value="">Choose Seller</option>
+                                @foreach(var buyer in @Model.Buyers){
+                                    <option value="@buyer.Value">@buyer.Text</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" class="button-search">Search</button>
+            </form>
+        <button type="submit" class="button-search download">Download History</button>
+        <div class="table-author product">
+            <table class="data">
+                <thead>
+                    <th>Date</th>
+                    <th>Seller</th>
+                    <th>Buyer</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Shipment</th>
+                    <th>Total Price</th>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(var transaction in Model.HistoryTransactions){
+                            if(transaction.OrderDate != null){
+                                <tr>
+                                    <td>@transaction.OrderDate</td>
+                                    <td>@transaction.NameSeller</td>
+                                    <td>@transaction.NameBauyer</td>
+                                    <td>@transaction.ProductName</td>
+                                    <td>@transaction.Quantity</td>
+                                    <td>@transaction.ShipperName</td>
+                                    <td>@transaction.TotalPrice</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+                <tfoot>
+					<tr>
+						<td colspan="7">
+							<div class="pagination">
+								<div>Page @Model.Pagination.PageNumber of @Model.Pagination.TotalPage</div>
+								<div>
+									@for(int pageNumber=1; pageNumber<=Model.Pagination.TotalPage; pageNumber++){
+										<a asp-action="Index"
+											asp-route-pageNumber="@pageNumber",
+                                            asp-route-sellerName="@Model.Seller"
+                                            asp-route-buyerName="@Model.Buyer"
+											class="number">@pageNumber</a>
+									}
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+            </table>
+        </div>

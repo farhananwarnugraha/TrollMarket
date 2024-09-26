@@ -1,0 +1,16 @@
+    @{
+        Layout = "_LayoutAuth";
+    }
+    @model TrollMarketWeb.ViewModels.Auth.AuthLoginViewModel
+    <form method="post" asp-action="Index">
+        <main class="container" style="text-align: center;">
+            <h1>Access Denied</h1>
+            <p>Sorry, you do not have access to this page, please contact the IT Helpdesk, Thank you.</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <a asp-controller="Dashboard" asp-action="Index" style="background-color: red; padding:5px; margin-top:20px;">Back to landing page</a>
+        </main>
+	</div>
+    </form>
+    <script src="~/JS/settoken.js"></script>

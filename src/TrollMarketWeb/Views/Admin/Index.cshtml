@@ -1,0 +1,43 @@
+    @model Auth.AuthRegisterViewModel
+    @section Breadcrumbs{ 
+        <div class="content-breadcrumbs">
+            <p class="content-breadcrumbs text">Admin</p>
+        </div>
+    }   
+    <div class="inputUpdate">
+        <form method="post" class="upsert-form">
+		    <table>
+		        <tbody>
+		            <tr>
+		                <td><label>Username *</label></td>
+		                <td>
+		                    <input type="text" asp-for="@Model.Username">
+		                    <div class="field-validation-error">
+								<span asp-validation-for="@Model.Username"></span>
+							</div>
+		                </td>
+		            </tr>
+		            <tr>
+		                <td><label>Password *</label></td>
+		                <td>
+		                    <input type="password" asp-for="@Model.Password">
+		                    <div class="field-validation-error">
+								<span asp-validation-for="@Model.Password"></span>
+							</div>
+		                </td>
+		            </tr>  
+		            <tr>
+		                <td><label>Confirmaton Password *</label></td>
+		                <td>
+		                    <input type="password" asp-for="@Model.PasswordConfirmation">
+		                    <div class="field-validation-error">
+								<span asp-validation-for="@Model.PasswordConfirmation"></span>
+							</div>
+		                </td>
+		            </tr>  
+		        </tbody>
+		    </table>
+		    <button class="update insert dark-button" type="submit">Save New Admin</button>
+		</form>
+    </div>
+	

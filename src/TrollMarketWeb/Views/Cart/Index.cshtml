@@ -1,0 +1,68 @@
+        @model TrollMarketWeb.ViewModels.Cart.CartIndexViewModel
+		@section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">My Cart</p>
+			</div>
+		}
+		<div class="table-author merchandise">
+        <a class="add-newdata author purcessAll">Purcess All</a>
+			<table class="data">
+				<thead>
+                    <th></th>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Shipment</th>
+					<th>Seller</th>
+					<th>Total Price</th>
+				</thead>
+				<tbody>
+				@{
+					
+					foreach(var itemCart in Model.Carts){
+				        <tr>
+                            <td>
+                                <a class="button delete" asp-action="#" cart-id="@itemCart.IdOrder">Remove</a>
+                                <a class="button purcess" asp-action="#" asp-route-id="@itemCart.IdOrder">Purcess</a>
+                            </td>
+                            <td>@itemCart.ProductName</td>
+                            <td>@itemCart.Quantity</td>
+                            <td>@itemCart.ShipperName</td>
+                            <td>@itemCart.SellerName</td>
+                            <td>@itemCart.TotalPrice</td>
+	    				</tr>
+					}	
+				}			
+				</tbody>
+				@* <tfoot>
+					<tr>
+						<td colspan="5">
+							@if(Model!=null){
+								<div class="pagination">
+									<div>Page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+									<div>
+										@for(int pageNumber=1; pageNumber<=Model.Pagination.TotalPages; pageNumber++){
+											<a  asp-action="Index" 
+												asp-route-pageNumber = "@pageNumber"
+												asp-route-fullName="@Model.FullName"
+												class="number">
+												@pageNumber
+											</a>
+										}
+									</div>
+								</div>
+							}
+						</td>
+					</tr>
+				</tfoot> *@
+			</table>
+		</div>
+		<div class="delete modal-layer">
+            <div class="inputUpdate">
+                <form method="post" class="upsert-form" action="">
+                    <h4>Are you sure you want to delete this data</h4>
+                <button class="yes dark-button" type="submit">Yes</button>
+                <button class="no dark-button" type="submit">No</button>
+            </form>
+            </div>
+        </div>
+		<script src="~/JS/cart.js"></script>

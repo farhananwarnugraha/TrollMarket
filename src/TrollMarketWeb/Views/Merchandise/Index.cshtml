@@ -1,0 +1,93 @@
+        @model TrollMarketWeb.ViewModels.Product.ProductIndexViewModel
+		@section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Profile</p>
+			</div>
+		}
+		<div class="table-author merchandise">
+        <a asp-action="Insert" class="add-newdata author">Add New Product</a>
+			<table class="data">
+				<thead>
+                    <th>Action</th>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Discontinue</th>
+				</thead>
+				<tbody>
+				@{
+					
+					foreach(var itemmerch in Model.Merchandise){
+				        <tr>
+                            <td>
+                               
+                                <a class="button edit" href="#" >Delete</a>
+                                <a class="button info" href="#" product-id="@itemmerch.Productid">Info</a>
+                                @if(itemmerch.Discontiue=="No"){
+									<a class="button edit" asp-action="Update" asp-route-productId="@itemmerch.Productid">Edit</a>
+                                	<a class="button discontinue" href="https://">Discontinue</a>
+                                }
+                            </td>
+							<td>@itemmerch.ProductName</td>	
+							<td>@itemmerch.CatgoryName</td>
+							<td>@itemmerch.Discontiue</td>
+	    				</tr>
+					}	
+				}			
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="4">
+							@if(Model!=null){
+								<div class="pagination">
+									<div>Page @Model.Paginations.PageNumber of @Model.Paginations.TotalPage</div>
+									<div>
+										@for(int pageNumber=1; pageNumber<=Model.Paginations.TotalPage; pageNumber++){
+											<a  asp-action="Index" 
+												asp-route-pageNumber = "@pageNumber"
+												class="number">
+												@pageNumber
+											</a>
+										}
+									</div>
+								</div>
+							}
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		@* modal *@
+		<div class="modal-layer">
+            <div class="inputUpdate">
+                <div class="upsert-form detail-data" action="">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td class="nameproduct">
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td class="categoryname"></td>
+                            </tr>  
+                            <tr>
+                                <td>Description</td>
+                                <td class="descrriptionproduct"></td>
+                            </tr>    
+                            <tr>
+                                <td>Price</td>
+                                <td class="price"></td>
+                            </tr>
+                            <tr>
+                                <td>Discontinue</td>
+                                <td class="discontinue"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="back-to dark-button" type="submit">Close</button>
+                </div>
+            </div>
+        </div>
+		<script src="~/JS/merch.js"></script>

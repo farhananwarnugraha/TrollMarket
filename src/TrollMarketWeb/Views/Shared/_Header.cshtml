@@ -1,0 +1,20 @@
+<header>
+    <div class="header-content">
+            <div class="bread-crumbs">
+            <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+            <span>Troll Market</span>
+        </div>
+        <div class="user-wrapper">
+            <div class="user">
+                <p>Welcome, @ViewData["Username"]</p>
+                <span class="role" hidden>@ViewData["Role"]</span>
+            </div>
+            <div class="sign-out">
+                <form asp-controller="Auth" asp-action="Logout" method="POST">
+                    <input type="hidden" />
+                    <button type="submit" id="logout">Sign Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>

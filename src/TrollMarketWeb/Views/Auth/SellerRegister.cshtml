@@ -1,0 +1,48 @@
+@{
+        Layout = "_LayoutAuth";
+}
+@model TrollMarketWeb.ViewModels.Auth.AuthRegisterViewModel
+<form asp-action="RegisSeller" method="post" class="form-register">
+<h4>Register</h4>
+    <table>
+        <tr>
+            <label class="register" asp-for="Username">Username</label>
+            <input type="text" class="username" asp-for="@Model.Username" placeholder="Username">
+            <div class="field-validation-error">
+				<span asp-validation-for="@Model.Username"></span>
+			</div>
+        </tr>
+        <tr>
+            <label asp-for="Password">Password</label>
+            <input type="password" placeholder="Password" asp-for="@Model.Password">
+            <div class="field-validation-error">
+				<span asp-validation-for="@Model.Password"></span>
+			</div>
+        </tr>
+        <tr>
+            <label class="register" asp-for="Password">Confirm Password</label>
+            <input type="password" placeholder="Passowrd Confirmation" asp-for="PasswordConfirmation">
+            <div class="field-validation-error">
+				<span asp-validation-for="@Model.PasswordConfirmation"></span>
+			</div>
+        </tr>
+        <tr>
+            <Label class="register" asp-for="@Model.FullName">Name</Label>
+            <input type="text" asp-for="@Model.FullName">
+            <div class="field-validation-error">
+				<span asp-validation-for="@Model.FullName"></span>
+			</div>
+        </tr>
+        <tr>     
+            <label class="register" asp-for="@Model.Address">Address</label>
+            <textarea cols="65" asp-for="@Model.Address"></textarea>
+            <div class="field-validation-error">
+				<span asp-validation-for="@Model.Address"></span>
+			</div>
+        </tr>
+        <tr>
+             <button class="update dark-button" type="submit">Register</button>
+            <a asp-action="Index" class="back-to dark-button">Back To Login</a>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,57 @@
+    @model TrollMarketWeb.ViewModels.Product.ProductUpsertViewModel
+		@section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Profile > Add Product</p>
+			</div>
+		}
+	<div class="inputUpdate">
+        <form method="post" class="upsert-form">
+			<input type="hidden" />
+		    <table>
+		        <tbody>
+					<input type="hidden" asp-for="@Model.Productid"/>
+		            <tr>
+		                <td><label>Name *</label></td>
+		                <td>
+		                    <input type="text" asp-for="@Model.ProductName">
+		                    <div class="field-validation-error">
+								<span asp-validation-for="@Model.ProductName"></span>
+							</div>
+		                </td>
+		            </tr>
+		            <tr>
+		                <td><label>Category *</label></td>
+		                <td>
+		                    <input type="text" asp-for="@Model.CatgoryName">
+		                    <div class="field-validation-error">
+								<span asp-validation-for="@Model.CatgoryName"></span>
+							</div>
+		                </td>
+		            </tr> 
+                    <tr>
+                        <td class="textarea-label"><label>Description </label></td>
+                        <td>
+                            <textarea asp-for="@Model.DescriptionProduct"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+		                <td><label>Price</label></td>
+		                <td>
+		                    <input type="text" asp-for="@Model.Price">
+							<div class="field-validation-error">
+								<span asp-validation-for="@Model.Price"></span>
+							</div>
+		                </td>
+		            </tr>
+                    <tr>
+		                <td><label>Discontinue</label></td>
+		                <td>
+		                    <input type="checkbox" asp-for="@Model.Discontiue">
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+		    <button class="update insert dark-button" type="submit">Save</button>
+		    <button class="back-to dark-button" asp-action="Index" type="submit">Cancel</button>
+		</form>
+    </div>

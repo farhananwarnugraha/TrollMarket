@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Troll Market</title>
+    <link rel="stylesheet" href="~/css/style.css"/>
+    @* <link rel="stylesheet" href="~/css/site.css">
+    <script src="~/JS/site.js" defer></script> *@
+</head>
+<body class="main-body">
+    <partial name="_Header"></partial>
+    <partial name="_Navigasi"></partial>
+    @RenderSection("Breadcrumbs", false)
+	<main>
+        @RenderBody()
+	</main>
+</body>
+</html>

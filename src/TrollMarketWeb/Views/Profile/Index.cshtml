@@ -1,0 +1,119 @@
+		@{
+			int uang=50000;
+		}
+        @model User.UserIndexViewModel
+		@section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Profile</p>
+			</div>
+		}
+        <form class="upsert-form">
+			<input type="hidden" />
+			<input type="hidden" />
+		    <table>
+		        <tbody>
+		            <tr>
+		                <td><label>Name</label></td>
+		                <td>
+		                   : @Model.User.FullName
+		                </td>
+		            </tr>  
+		            <tr>
+                        <td><label>Role</label></td>
+		                <td>
+                           : @Model.User.Role
+		                </td>
+		            </tr>
+		            <tr>
+                        <td><label>Adress</label></td>
+		                <td>
+                            : @Model.User.Address
+		                </td>
+		            </tr>
+                    <tr>
+		                <td><label>Balance</label></td>
+		                <td>
+                           : @Model.User.Balance
+		                </td>
+                        @if(@Model.User.Role == "Buyer"){
+                            <td>
+                                <button type="button" class="add-balance">Tambah Dana</button>
+                            </td>
+                        }
+		            </tr>
+		        </tbody>
+		    </table>
+		</form>
+
+		<div class="table-author">
+			<h5>My Transaction</h5>
+			<table class="data">
+				<thead>
+					<th>Date</th>
+					<th>Product</th>
+					<th>Quentity</th>
+					<th>Shipment</th>
+					<th>TotalPrice</th>
+				</thead>
+				<tbody>
+				@{
+					
+					foreach(var itemTransaction in Model.Transaction){
+						if(itemTransaction.OrderDate !=null){
+							<tr>
+								<td>@itemTransaction.OrderDate</td>
+								<td>@itemTransaction.ProductName</td>
+								<td>@itemTransaction.Quantity</td>
+								<td>@itemTransaction.ShipperName</td>
+								<td>@itemTransaction.TotalPrice</td>
+							</tr>
+						}
+					}	
+				}			
+				</tbody>
+				@* <tfoot>
+					<tr>
+						<td colspan="5">
+							@if(Model!=null){
+								<div class="pagination">
+									<div>Page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+									<div>
+										@for(int pageNumber=1; pageNumber<=Model.Pagination.TotalPages; pageNumber++){
+											<a  asp-action="Index" 
+												asp-route-pageNumber = "@pageNumber"
+												asp-route-fullName="@Model.FullName"
+												class="number">
+												@pageNumber
+											</a>
+										}
+									</div>
+								</div>
+							}
+						</td>
+					</tr>
+				</tfoot> *@
+			</table>
+		</div>
+
+		@* modal add balance *@
+		<div class="modal-layer">
+            <div class="inputUpdate">
+                <form method="post" class="upsert-form" action="">
+                <h3>Tambah Dana Sebesar</h3>
+                <input type="hidden" />
+                <input type="hidden" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="number" name="shippername" class=".">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="insert dark-button" type="submit">Tambah</button>
+                <button class="back-to dark-button">Batal</button>
+            </form>
+            </div>
+        </div>
+		<script src="~/JS/profile.js"></script>

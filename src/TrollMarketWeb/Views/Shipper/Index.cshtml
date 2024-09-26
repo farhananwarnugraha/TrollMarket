@@ -1,0 +1,103 @@
+        @model Shipper.ShipperIndexViewModel
+		@section Breadcrumbs{ 
+			<div class="content-breadcrumbs">
+				<p class="content-breadcrumbs text">Shipment</p>
+			</div>
+		}
+		<div class="table-author shipper">
+            <a asp-action="Insert" class="add-newdata shipper">Add New Shipment</a>
+			<table class="data">
+				<thead>
+                    <th>Action</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Service</th>
+				</thead>
+				<tbody>
+				@{
+					
+					foreach(var shipment in Model.Shippers){
+				        <tr>
+                            <td>
+                                <a class="button edit" href="#" shipper-id="@shipment.ShipperId">Edit</a>
+                                <a class="button delete" href="#" shipper-id="@shipment.ShipperId">Delete</a>
+                                @if(shipment.IsServices=="Yes"){
+                                <a class="button end-service" href="https://">Stop Service</a>
+                                }
+                            </td>
+							<td>@shipment.ShipperName</td>
+							<td>@shipment.Price</td>
+							<td>@shipment.IsServices</td>
+	    				</tr>
+					}	
+				}			
+				</tbody>
+				@* <tfoot>
+					<tr>
+						<td colspan="5">
+							@if(Model!=null){
+								<div class="pagination">
+									<div>Page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+									<div>
+										@for(int pageNumber=1; pageNumber<=Model.Pagination.TotalPages; pageNumber++){
+											<a  asp-action="Index" 
+												asp-route-pageNumber = "@pageNumber"
+												asp-route-fullName="@Model.FullName"
+												class="number">
+												@pageNumber
+											</a>
+										}
+									</div>
+								</div>
+							}
+						</td>
+					</tr>
+				</tfoot> *@
+			</table>
+		</div>
+        @* pop up insert - update *@
+        <div class="modal-layer">
+            <div class="inputUpdate">
+                <form method="post" class="upsert-form" action="">
+                <h3>Add New Shipment</h3>
+                <input type="hidden" />
+                <input type="hidden" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label>Name *</label></td>
+                            <td>
+                                <input type="text" name="shippername">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Price *</label></td>
+                            <td>
+                                <input type="text" name="price">
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td><label>Service </label></td>
+                            <td>
+                                <input type="checkbox" name="service">
+                            </td>
+                        </tr> 
+                    </tbody>
+                </table>
+                <button class="insert dark-button" type="submit">Tanbah</button>
+                <button class="update dark-button" >Simpan</button>
+                <button class="back-to dark-button">Batal</button>
+            </form>
+            </div>
+        </div>
+
+        <div class="delete modal-layer">
+            <div class="inputUpdate">
+                <form method="post" class="upsert-form" action="">
+                    <h4>Are you sure you want to delete this data</h4>
+                <button class="yes dark-button" type="submit">Yes</button>
+                <button class="no dark-button" type="submit">No</button>
+            </form>
+            </div>
+        </div>
+        <script src="~/JS/shipper.js"></script>

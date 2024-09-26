@@ -1,0 +1,42 @@
+    @{
+        Layout = "_LayoutAuth";
+    }
+    @model TrollMarketWeb.ViewModels.Auth.AuthLoginViewModel
+    <form method="post" asp-action="Index">
+        <h4>Login Here</h4>
+        <div class="field-validation-error">
+            <span>@ViewBag.ErrorMesage</span>
+        </div>
+        <label asp-for="Username">Username</label>
+        <input type="text" class="username" asp-for="Username" placeholder="Username">
+
+        <label asp-for="Password">Password</label>
+        <input type="password" class="password" placeholder="Password" asp-for="Password">
+
+        <label asp-for="Role">Role</label>
+        <select asp-for="Role" class="role">
+            <option value="null">Choose Youre Role</option>
+            @if(Model!=null){
+                foreach(var role in Model.Roles){
+                    <option value="@role.Text">@role.Value</option>
+                }
+            }
+        </select>
+
+        <button type="submit">Sign In</button>
+
+        <p>Don't have account?</p>
+        <div class="register">
+            <div class="buyer">
+                <a asp-controller="Auth" asp-action="RegisBuyer">
+                    Buyer Register
+                </a>
+            </div>
+            <div class="seller">
+                <a asp-controller="Auth" asp-action="RegisSeller">
+                    Seller Register
+                </a>
+            </div>
+        </div>
+    </form>
+    <script src="~/JS/settoken.js"></script>
