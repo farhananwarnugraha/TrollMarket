@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TrollMarketDataAccess
-build_property.ProjectDir = c:\Bootcamp\Framework\Bakup\Backup\final\FarhanAnwarNugraha_TrollMarket_BC42\TrollMarket\src\TrollMarketDataAccess\
+build_property.ProjectDir = C:\Bootcamp\Framework\Bakup\Backup\final\FarhanAnwarNugraha_TrollMarket_BC42\TrollMarket\src\TrollMarketDataAccess\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

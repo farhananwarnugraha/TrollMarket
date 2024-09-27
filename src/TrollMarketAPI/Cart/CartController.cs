@@ -40,7 +40,12 @@ public class CartController : ControllerBase
     public IActionResult PurcessAll(PurcessAllDTO viewModel){
         viewModel.usernameBuyer = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
         var cart = _service.PurcessAll(viewModel.usernameBuyer!);
-        return Ok(cart);
+        // return Ok(cart);
+        var response = new PurcessAllResponseDTO{
+            status = 200,
+            message = "Purcess All Success"
+        };
+        return Ok(response);
     }
     [HttpDelete]
     public IActionResult Delete(int orderProductId){
